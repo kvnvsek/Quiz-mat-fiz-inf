@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Quiz: Czy nadajesz się do klasy mat-fiz?</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        padding: 20px;
+    }
+    .quiz-container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        text-align: center;
+    }
+    .question {
+        margin-bottom: 20px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background: #4CAF50;
+        color: white;
+    }
+    #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>🧠 Quiz: Czy nadajesz się do klasy mat-fiz?</h1>
+
+    <form id="quizForm">
+
+        <div class="question">
+            <p>1. Widzisz równanie: 2x + 5 = 13. Co robisz?</p>
+            <label><input type="radio" name="q1" value="A"> A) Rozwiązuję w głowie</label><br>
+            <label><input type="radio" name="q1" value="B"> B) Sięgam po kartkę</label><br>
+            <label><input type="radio" name="q1" value="C"> C) Googluję „jak żyć”</label><br>
+            <label><input type="radio" name="q1" value="D"> D) Udaję, że to nie do mnie</label>
+        </div>
+
+        <div class="question">
+            <p>2. Nauczyciel mówi „dzisiaj fizyka”. Twoja reakcja:</p>
+            <label><input type="radio" name="q2" value="A"> A) 🔥LET’S GO!</label><br>
+            <label><input type="radio" name="q2" value="B"> B) Może być</label><br>
+            <label><input type="radio" name="q2" value="C"> C) Już mnie boli głowa</label><br>
+            <label><input type="radio" name="q2" value="D"> D) Czy można zmienić szkołę?</label>
+        </div>
+
+        <div class="question">
+            <p>3. Ile to jest sin²x + cos²x?</p>
+            <label><input type="radio" name="q3" value="A"> A) 1</label><br>
+            <label><input type="radio" name="q3" value="B"> B) Coś z jedynką</label><br>
+            <label><input type="radio" name="q3" value="C"> C) Zaklęcie</label><br>
+            <label><input type="radio" name="q3" value="D"> D) Odmawiam odpowiedzi</label>
+        </div>
+
+        <div class="question">
+            <p>4. Zadanie: pociąg A jedzie 60 km/h…</p>
+            <label><input type="radio" name="q4" value="A"> A) Już liczę</label><br>
+            <label><input type="radio" name="q4" value="B"> B) Czytam do końca</label><br>
+            <label><input type="radio" name="q4" value="C"> C) A gdzie jedzie?</label><br>
+            <label><input type="radio" name="q4" value="D"> D) Wysiadam</label>
+        </div>
+
+        <div class="question">
+            <p>5. Twój stosunek do „udowodnij, że…”</p>
+            <label><input type="radio" name="q5" value="A"> A) Uwielbiam</label><br>
+            <label><input type="radio" name="q5" value="B"> B) Dam radę</label><br>
+            <label><input type="radio" name="q5" value="C"> C) Nie jestem w sądzie</label><br>
+            <label><input type="radio" name="q5" value="D"> D) Podejrzane</label>
+        </div>
+
+        <button type="button" onclick="calculateResult()">Sprawdź wynik</button>
+
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculateResult() {
+    let answers = ["q1","q2","q3","q4","q5"];
+    let count = {A:0, B:0, C:0, D:0};
+
+    for (let q of answers) {
+        let selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (!selected) {
+            alert("Odpowiedz na wszystkie pytania!");
+            return;
+        }
+        count[selected.value]++;
+    }
+
+    let resultText = "";
+
+    if (count.A >= count.B && count.A >= count.C && count.A >= count.D) {
+        resultText = " Urodzony mat-fiz! Masz analityczny umysł i kochasz wyzwania.";
+    } 
+    else if (count.B >= count.A && count.B >= count.C && count.B >= count.D) {
+        resultText = " Ogarniający realistycznie — dasz radę z mat-fizem przy pracy.";
+    } 
+    else if (count.C >= count.A && count.C >= count.B && count.C >= count.D) {
+        resultText = " Humanista w ukryciu — to raczej nie Twoje klimaty.";
+    } 
+    else {
+        resultText = " Uciekaj póki możesz — mat-fiz to nie Twoja bajka ";
+    }
+
+    document.getElementById("result").innerText = resultText;
+}
+</script>
+
+</body>
+</html>
